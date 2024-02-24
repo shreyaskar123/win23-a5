@@ -1,11 +1,8 @@
 CC=gcc
 CFLAGS=-I./calculator
 
-# Specify the directory where your source files are located
-SRC_DIR=./calculator
-
-# Specify the output directory for the executable
-OUT_DIR=./calculator
+SRC_DIR=.
+OUT_DIR=.
 
 OBJ = $(SRC_DIR)/main.o $(SRC_DIR)/addition.o $(SRC_DIR)/subtraction.o $(SRC_DIR)/multiplication.o $(SRC_DIR)/division.o
 
