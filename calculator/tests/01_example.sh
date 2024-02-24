@@ -29,3 +29,44 @@ if $CALCULATOR 3 @ 2; then  # If the return code of $PROGRAM is zero (i.e. succe
   echo 'ERROR! An invalid run of the application (3 @ 2) apparently succeeded?!'
   exit 1
 fi
+
+if [[ $($CALCULATOR 5 - 3) -ne 2 ]]; then
+  echo 'ERROR! Subtraction test (5 - 3) failed to produce 2!'
+  exit 1
+fi
+
+# Test multiplication
+if [[ $($CALCULATOR 2 '*' 3) -ne 6 ]]; then  # Note: '*' must be quoted
+  echo 'ERROR! Multiplication test (2 * 3) failed to produce 6!'
+  exit 1
+fi
+
+# Test division
+if [[ $($CALCULATOR 6 / 2) -ne 3 ]]; then
+  echo 'ERROR! Division test (6 / 2) failed to produce 3!'
+  exit 1
+fi
+
+# Test division by zero - expecting error or specific output
+if $CALCULATOR 1 / 0; then
+  echo 'ERROR! Division by zero should fail!'
+  exit 1
+fi
+
+# Test quiet mode with valid operation
+if ! output=$($CALCULATOR -q 1 + 1); then
+  echo 'ERROR! Quiet mode operation (1 + 1) failed!'
+  exit 1
+elif [[ $output -ne 2 ]]; then
+  echo 'ERROR! Quiet mode operation (1 + 1) failed to produce correct output!'
+  exit 1
+fi
+
+# Test with non-numeric input
+if $CALCULATOR a + b; then
+  echo 'ERROR! Non-numeric input should fail!'
+  exit 1
+fi
+
+echo "All tests passed successfully."
+exit 0
