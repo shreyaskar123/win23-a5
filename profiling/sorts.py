@@ -1,12 +1,13 @@
 import random
 
-
+@profile
 def test_sorted(fn, iters=1000):
     for i in range(iters):
         l = [random.randint(0, 100) for i in range(0, random.randint(0, 50))]
         assert fn(l) == sorted(l)
         # print(fn.__name__, fn(l))
 
+@profile
 def insertionsort(array):
 
     for i in range(len(array)):
@@ -17,7 +18,8 @@ def insertionsort(array):
             j -= 1
         array[j+1] = v
     return array
-
+    
+@profile
 def quicksort(array):
     if len(array) <= 1:
         return array
@@ -26,6 +28,7 @@ def quicksort(array):
     right = [i for i in array[1:] if i >= pivot]
     return quicksort(left) + [pivot] + quicksort(right)
 
+@profile
 def quicksort_inplace(array, low=0, high=None):
     if len(array) <= 1:
         return array
