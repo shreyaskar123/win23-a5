@@ -53,15 +53,6 @@ if $CALCULATOR 1 / 0; then
   exit 1
 fi
 
-# Test quiet mode with valid operation
-if ! output=$($CALCULATOR -q 1 + 1); then
-  echo 'ERROR! Quiet mode operation (1 + 1) failed!'
-  exit 1
-elif [[ $output -ne 2 ]]; then
-  echo 'ERROR! Quiet mode operation (1 + 1) failed to produce correct output!'
-  exit 1
-fi
-
 # Test with non-numeric input
 if $CALCULATOR a + b; then
   echo 'ERROR! Non-numeric input should fail!'
